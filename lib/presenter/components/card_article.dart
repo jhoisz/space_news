@@ -43,6 +43,7 @@ class _CardArticleState extends State<CardArticle> {
             MaterialPageRoute(
               builder: (context) => Details(
                 article: widget.article,
+                isFavorite: widget.isFavorite,
               ),
             ),
           );

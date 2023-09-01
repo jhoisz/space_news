@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
+import '../data/store/home_store.dart';
 import '../domain/entities/article.dart';
 import '../theme.dart';
 
 class Details extends StatefulWidget {
-  const Details({super.key, required this.article});
+  const Details({super.key, required this.article, required this.isFavorite});
   final Article article;
+  final bool isFavorite;
 
   @override
   State<Details> createState() => _DetailsState();
@@ -17,6 +21,8 @@ class _DetailsState extends State<Details> {
 
   @override
   Widget build(BuildContext context) {
+    final HomeStore homeStore = context.read<HomeStore>();
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -46,18 +52,28 @@ class _DetailsState extends State<Details> {
                           color: Colors.white60,
                           borderRadius: BorderRadius.circular(12.0),
                         ),
-                        child: IconButton(
-                          padding: EdgeInsets.zero,
-                          isSelected: standardSelected,
-                          icon: const Icon(Icons.favorite_border),
-                          selectedIcon: const Icon(
-                            Icons.favorite,
-                            color: Colors.red,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              standardSelected = !standardSelected;
-                            });
+                        child: Observer(
+                          builder: (_) {
+                            final favList = homeStore.favoritesList;
+                            final isSelected = favList.any(
+                                (element) => element.id == widget.article.id,
+                              );
+                            return IconButton(
+                              padding: EdgeInsets.zero,
+                              isSelected: isSelected,
+                              icon: const Icon(Icons.favorite_border),
+                              selectedIcon: const Icon(
+                                Icons.favorite,
+                                color: Colors.red,
+                              ),
+                              onPressed: () {
+                                if (isSelected) {
+                                  homeStore.removeFavorite(widget.article);
+                                } else {
+                                  homeStore.setFavorite(widget.article);
+                                }
+                              },
+                            );
                           },
                         ),
                       ),

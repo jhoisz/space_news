@@ -37,8 +37,4 @@ abstract class _HomeStoreBase with Store {
       article: article,
     );
   }
-
-  bool isFavorite(int id) {
-    return favoritesList.any((e) => e.id == id);
-  }
 }
