@@ -26,7 +26,6 @@ class Api implements IGetArticlesUsecase {
       ),
     );
 
-    print(list.map((e) => e.title));
     return list;
   }
 }
