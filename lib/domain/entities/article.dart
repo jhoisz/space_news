@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class Article {
@@ -8,9 +7,10 @@ class Article {
   final String summary;
   final String publishedAt;
   final String updatedAt;
+  bool? isFavorite;
 
   Article(this.title, this.url, this.imageUrl, this.summary, this.publishedAt,
-      this.updatedAt);
+      this.updatedAt, {isFavorite = false});
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{

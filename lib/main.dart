@@ -18,6 +18,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         brightness: Brightness.light,
         fontFamily: 'Poppins',
+        appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(fontSize: 21.0, fontWeight: FontWeight.bold, color: Colors.black),
+        ),
       ),
       home: const Home(),
     );

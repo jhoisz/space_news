@@ -19,6 +19,18 @@ class _HomeState extends State<Home> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Space News'),
+          centerTitle: true,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 16.0),
+              child: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.favorite,
+                ),
+              ),
+            ),
+          ],
         ),
         body: FutureBuilder(
           future: api.getArticles(),
