@@ -30,6 +30,7 @@ class _DetailsState extends State<Details> {
               child: CustomScrollView(
                 slivers: [
                   SliverAppBar(
+                    automaticallyImplyLeading: false,
                     flexibleSpace: Image(
                       image: NetworkImage(widget.article.imageUrl),
                       width: double.infinity,
