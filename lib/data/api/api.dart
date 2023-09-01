@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
-import '../domain/entities/article.dart';
-import '../domain/usecases/get_articles_usecase.dart';
+import '../../domain/entities/article.dart';
+import '../../domain/usecases/get_articles_usecase.dart';
 
 class Api implements IGetArticlesUsecase {
   final Dio dio = Dio();

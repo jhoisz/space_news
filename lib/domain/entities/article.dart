@@ -1,30 +1,38 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:floor/floor.dart';
+
+@entity
 class Article {
+  @primaryKey
+  final int id;
   final String title;
   final String url;
   final String imageUrl;
   final String summary;
   final String publishedAt;
   final String updatedAt;
-  bool? isFavorite;
 
-  Article(this.title, this.url, this.imageUrl, this.summary, this.publishedAt,
-      this.updatedAt, {isFavorite = false});
+  Article(this.id, this.title, this.url, this.imageUrl, this.summary, this.publishedAt,
+      this.updatedAt);
+
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'id': id,
       'title': title,
       'url': url,
       'image_url': imageUrl,
       'summary': summary,
-      'publishedAt': publishedAt,
-      'updatedAt': updatedAt,
+      'published_at': publishedAt,
+      'updated_at': updatedAt,
     };
   }
 
   factory Article.fromMap(Map<String, dynamic> map) {
     return Article(
+      map['id'] as int,
       map['title'] as String,
       map['url'] as String,
       map['image_url'] as String,

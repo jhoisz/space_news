@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../data/api.dart';
+import '../data/api/api.dart';
 import 'components/card_article.dart';
 
 class Home extends StatefulWidget {
