@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'data/store/home_store.dart';
 import 'presenter/home.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(Provider(create: (context) => HomeStore(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -19,7 +21,8 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.light,
         fontFamily: 'Poppins',
         appBarTheme: const AppBarTheme(
-          titleTextStyle: TextStyle(fontSize: 21.0, fontWeight: FontWeight.bold, color: Colors.black),
+          titleTextStyle: TextStyle(
+              fontSize: 21.0, fontWeight: FontWeight.bold, color: Colors.black),
         ),
       ),
       home: const Home(),
