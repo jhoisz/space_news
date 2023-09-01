@@ -20,6 +20,7 @@ class _FavoritesState extends State<Favorites> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Favorites'),
+          centerTitle: true,
         ),
         body: Observer(
           builder: (context) {
