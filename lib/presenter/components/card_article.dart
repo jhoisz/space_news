@@ -1,23 +1,33 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:space_news/data/store/home_store.dart';
 
 import '../../domain/entities/article.dart';
 import '../../theme.dart';
 import '../details.dart';
 
 class CardArticle extends StatefulWidget {
-  const CardArticle({super.key, required this.article});
+  const CardArticle({
+    Key? key,
+    required this.article,
+    required this.isFavorite,
+  }) : super(key: key);
+
   final Article article;
+  final bool isFavorite;
 
   @override
   State<CardArticle> createState() => _CardArticleState();
 }
 
 class _CardArticleState extends State<CardArticle> {
-  bool standardSelected = false;
 
   @override
   Widget build(BuildContext context) {
+    final HomeStore homeStore = context.read<HomeStore>();
+
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
@@ -31,7 +41,9 @@ class _CardArticleState extends State<CardArticle> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Details(article: widget.article,),
+              builder: (context) => Details(
+                article: widget.article,
+              ),
             ),
           );
         },
@@ -79,16 +91,18 @@ class _CardArticleState extends State<CardArticle> {
                     children: [
                       IconButton(
                         padding: EdgeInsets.zero,
-                        isSelected: standardSelected,
+                        isSelected: widget.isFavorite,
                         icon: const Icon(Icons.favorite_border),
                         selectedIcon: const Icon(
                           Icons.favorite,
                           color: Colors.red,
                         ),
                         onPressed: () {
-                          setState(() {
-                            standardSelected = !standardSelected;
-                          });
+                          if (widget.isFavorite) {
+                            homeStore.removeFavorite(widget.article);
+                          } else {
+                            homeStore.setFavorite(widget.article);
+                          }
                         },
                       ),
                       IconButton(

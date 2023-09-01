@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 
 import '../data/api/api.dart';
+import '../data/store/home_store.dart';
+import '../domain/entities/article.dart';
 import 'components/card_article.dart';
+import 'favorites.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -15,6 +20,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    final HomeStore homeStore = context.read<HomeStore>();
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -24,7 +31,14 @@ class _HomeState extends State<Home> {
             Padding(
               padding: const EdgeInsets.only(right: 16.0),
               child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Favorites(),
+                    ),
+                  );
+                },
                 icon: const Icon(
                   Icons.favorite,
                 ),
@@ -41,11 +55,23 @@ class _HomeState extends State<Home> {
                   break;
                 case ConnectionState.done:
                   if (snapshot.data != null && snapshot.data!.isNotEmpty) {
+                    final articles = snapshot.data!;
                     return ListView.builder(
+                      itemCount: articles.length,
                       itemBuilder: (context, index) {
-                        return CardArticle(article: snapshot.data![index]);
+                        final Article article = articles[index];
+                        return Observer(
+                          builder: (_) {
+                            final favList = homeStore.favoritesList;
+                            return CardArticle(
+                              article: article,
+                              isFavorite: favList.any(
+                                (element) => element.id == article.id,
+                              ),
+                            );
+                          },
+                        );
                       },
-                      itemCount: snapshot.data!.length,
                     );
                   }
                   break;
