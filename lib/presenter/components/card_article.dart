@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:space_news/data/store/home_store.dart';
 
 import '../../domain/entities/article.dart';
@@ -23,7 +24,6 @@ class CardArticle extends StatefulWidget {
 }
 
 class _CardArticleState extends State<CardArticle> {
-
   @override
   Widget build(BuildContext context) {
     final HomeStore homeStore = context.read<HomeStore>();
@@ -109,7 +109,9 @@ class _CardArticleState extends State<CardArticle> {
                       IconButton(
                         padding: EdgeInsets.zero,
                         icon: const Icon(Icons.share),
-                        onPressed: () {},
+                        onPressed: () async {
+                          await Share.share(widget.article.url);
+                        },
                       ),
                     ],
                   )

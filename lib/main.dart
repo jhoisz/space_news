@@ -5,7 +5,12 @@ import 'data/store/home_store.dart';
 import 'presenter/home.dart';
 
 void main() {
-  runApp(Provider(create: (context) => HomeStore(), child: const MyApp()));
+  runApp(
+    Provider(
+      create: (context) => HomeStore(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
