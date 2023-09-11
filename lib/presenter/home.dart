@@ -77,7 +77,7 @@ class _HomeState extends State<Home> {
                   break;
                 case ConnectionState.none:
                   return const Center(
-                    child: Text('Erro'),
+                    child: Text('Error loading articles'),
                   );
                 case ConnectionState.waiting:
                   return const Center(

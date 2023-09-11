@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:space_news/utils/themes/theme.dart';
 
 import 'data/store/home_store.dart';
 import 'presenter/home.dart';
@@ -19,17 +20,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorSchemeSeed: Colors.purple,
-        useMaterial3: true,
-        brightness: Brightness.light,
-        fontFamily: 'Poppins',
-        appBarTheme: const AppBarTheme(
-          titleTextStyle: TextStyle(
-              fontSize: 21.0, fontWeight: FontWeight.bold, color: Colors.black),
-        ),
-      ),
+      debugShowCheckedModeBanner: false,
+      title: 'Space News',
+      theme: myTheme,
       home: const Home(),
     );
   }

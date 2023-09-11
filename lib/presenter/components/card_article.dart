@@ -6,7 +6,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:space_news/data/store/home_store.dart';
 
 import '../../domain/entities/article.dart';
-import '../../theme.dart';
+import '../../utils/themes/theme.dart';
 import '../details.dart';
 
 class CardArticle extends StatefulWidget {
