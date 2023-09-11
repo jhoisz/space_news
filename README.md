@@ -10,13 +10,9 @@ Aplicação para exibir artigos sobre o espaço, com informações vindas atrav�
 3. Visualize artigos favoritados;
 4. Ver detalhes de um artigo.
 
-> 🚧 Ainda em construção 🚧
-
-<!--
 <p align="center">
-  <img src='.gif' alt= '' />
+  <img src='space_news.gif' alt= '' />
 </p>
--->
 
 ## Tecnologias e bibliotecas
 
@@ -32,11 +28,9 @@ Algumas bilbiotecas também foram utilizadas:
 
 > `Dio`: Biblioteca utilizada para fazer requisição HTTP.
 
-> `Floor` e `Sqflite`: Bibliotecas utilzadas para criar um banco de dados local.  
+> `Floor` e `Sqflite`: Bibliotecas utilzadas para criar um banco de dados local.
 
-## Camadas e organização
-
-> 🚧 Em construção 🚧
+> `Share_plus`: Biblioteca para compartilhar um link. 
 
 ## Como executar
 
